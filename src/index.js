@@ -7,6 +7,7 @@ import "./models/index.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 import { adminMiddleware } from "./middlewares/adminMiddleware.js";
+import authRoutes from "./routes/auth.js"; 
 
 dotenv.config();
 
@@ -29,6 +30,8 @@ app.get("/protegido", authMiddleware, (req, res) => {
 app.get("/admin", authMiddleware, adminMiddleware, (req, res) => {
   res.json({ mensaje: "Bienvenido administrador", usuario: req.user });
 });
+
+app.use("/api/auth", authRoutes);
 
 app.use(errorHandler);
 
