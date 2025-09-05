@@ -4,6 +4,9 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import sequelize from "./config/database.js"; 
 import "./models/index.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
+import { authMiddleware } from "./middlewares/authMiddleware.js";
+import { adminMiddleware } from "./middlewares/adminMiddleware.js";
 
 dotenv.config();
 
@@ -18,6 +21,16 @@ app.get("/health", (req, res) => {
     mensaje: "Servidor en funcionamiento con base de datos",
   });
 });
+
+app.get("/protegido", authMiddleware, (req, res) => {
+  res.json({ mensaje: "Acceso autorizado", usuario: req.user });
+});
+
+app.get("/admin", authMiddleware, adminMiddleware, (req, res) => {
+  res.json({ mensaje: "Bienvenido administrador", usuario: req.user });
+});
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
