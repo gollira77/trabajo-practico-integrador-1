@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import sequelize from "./config/database.js"; 
+import "./models/index.js";
 
 dotenv.config();
 
@@ -24,11 +25,15 @@ const startServer = async () => {
   try {
     await sequelize.authenticate();
     console.log("Conexión a la base de datos establecida correctamente.");
+
+    await sequelize.sync({ alter: true });
+    console.log("Modelos sincronizados correctamente (tablas listas).");
+
     app.listen(PORT, () => {
       console.log(`Servidor escuchando en el puerto ${PORT}`);
     });
   } catch (error) {
-    console.error("Error al conectar con la base de datos:", error.message);
+    console.error("Error al conectar/sincronizar la base de datos:", error.message);
     process.exit(1);
   }
 };
