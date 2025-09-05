@@ -1,0 +1,34 @@
+{
+  "name": "trabajo-practico-integrador-1",
+  "version": "1.0.0",
+  "description": "Repositorio para el Trabajo Práctico Integrador 1 — Sistema de blog con Node.js, Express y Sequelize.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gollira77/trabajo-practico-integrador-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gollira77/trabajo-practico-integrador-1/issues"
+  },
+  "homepage": "https://github.com/gollira77/trabajo-practico-integrador-1#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.4",
+    "sequelize": "^6.37.7"
+  }
+}
