@@ -9,6 +9,7 @@ import { authMiddleware } from "./middlewares/authMiddleware.js";
 import { adminMiddleware } from "./middlewares/adminMiddleware.js";
 import authRoutes from "./routes/auth.js"; 
 import userRoutes from "./routes/users.js";
+import tagRoutes from "./routes/tags.js";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.get("/admin", authMiddleware, adminMiddleware, (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/tags", tagRoutes);
 
 app.use(errorHandler);
 
